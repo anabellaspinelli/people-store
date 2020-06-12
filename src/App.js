@@ -6,8 +6,8 @@ import Badge from 'react-bootstrap/Badge'
 import { version as frontEndVersion } from '../package.json'
 
 function App () {
-  const [people, setPeople] = useState([])
-  const [version, setVersion] = useState([])
+  const [people, setPeople] = useState()
+  const [envData, setEnvData] = useState()
 
   useEffect(() => {
     fetch('http://localhost:8080/people')
@@ -18,12 +18,14 @@ function App () {
   useEffect(() => {
     fetch('http://localhost:8080/version')
       .then(res => res.json())
-      .then(body => setVersion(body._embedded.version))
+      .then(body => setEnvData(body._embedded.version[0]))
   }, [])
 
-  if (!people.length || !version.length) {
+  if (!people || !envData) {
     return null
   }
+
+  const { environmentName, version: backendVersion } = envData
 
   return (
     <Container className='App'>
@@ -51,20 +53,20 @@ function App () {
         <thead>
           <tr>
             <th>Environment</th>
-            <th>FE Version</th>
-            <th>BE Version</th>
+            <th>Front End Version</th>
+            <th>Back End Version</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>
-              <Badge variant='primary'>{version[0].environmentName}</Badge>
+              <Badge variant='primary'>{environmentName}</Badge>
             </td>
             <td>
               <Badge variant='success'>{frontEndVersion}</Badge>
             </td>
             <td>
-              <Badge variant='success'>{version[0].version}</Badge>
+              <Badge variant='success'>{backendVersion}</Badge>
             </td>
           </tr>
         </tbody>
