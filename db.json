@@ -1,0 +1,60 @@
+{
+  "version": {
+    "_embedded": {
+      "version": [
+        {
+          "environmentName": "prod",
+          "version": "1.0.0"
+        }
+      ]
+    }
+  },
+  "people": {
+    "_embedded": {
+      "people": [
+        {
+          "firstName": "Anabella",
+          "lastName": "Spinelli",
+          "_links": {
+            "self": {
+              "href": "http://localhost:8080/people/5ee34812bf968c68f32db548"
+            },
+            "person": {
+              "href": "http://localhost:8080/people/5ee34812bf968c68f32db548"
+            }
+          }
+        },
+        {
+          "firstName": "Dalmiro",
+          "lastName": "Grañas",
+          "_links": {
+            "self": {
+              "href": "http://localhost:8080/people/5ee3481dbf968c68f32db549"
+            },
+            "person": {
+              "href": "http://localhost:8080/people/5ee3481dbf968c68f32db549"
+            }
+          }
+        }
+      ]
+    },
+    "_links": {
+      "self": {
+        "href": "http://localhost:8080/people{?page,size,sort}",
+        "templated": true
+      },
+      "profile": {
+        "href": "http://localhost:8080/profile/people"
+      },
+      "search": {
+        "href": "http://localhost:8080/people/search"
+      }
+    },
+    "page": {
+      "size": 20,
+      "totalElements": 3,
+      "totalPages": 1,
+      "number": 0
+    }
+  }
+}
